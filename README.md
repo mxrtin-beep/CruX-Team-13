@@ -29,3 +29,7 @@ Beta (>12 Hz): alertness, mental activity.
 Delta (0.1-3.5 Hz): deep sleep
 Theta (4-8 Hz): light sleep or deep relaxation
 Gamma (>30 Hz): intense focus
+
+https://hcis-journal.springeropen.com/articles/10.1186/s13673-019-0201-x
+Emotion classification based on brain wave: a survey
+
