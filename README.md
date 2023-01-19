@@ -21,3 +21,11 @@ Statistical analysis indicated that there is a significant relationship between 
 https://arxiv.org/abs/1706.01728
 Potential for measuring flow state with BCI.
 Tested impact of music on flow state.
+
+https://psyfitms.com/types-of-brain-waves/#:~:text=There%20are%20four%20main%20types,a%20different%20state%20of%20mind.
+Types of brain waves.
+Alpha (8-12 Hz): relaxation, mental readiness.
+Beta (>12 Hz): alertness, mental activity.
+Delta (0.1-3.5 Hz): deep sleep
+Theta (4-8 Hz): light sleep or deep relaxation
+Gamma (>30 Hz): intense focus
