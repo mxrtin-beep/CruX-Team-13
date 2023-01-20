@@ -33,3 +33,6 @@ Gamma (>30 Hz): intense focus
 https://hcis-journal.springeropen.com/articles/10.1186/s13673-019-0201-x
 Emotion classification based on brain wave: a survey
 
+
+https://sccn.ucsd.edu/~arno/fam2data/publicly_available_EEG_data.html
+Free Data
