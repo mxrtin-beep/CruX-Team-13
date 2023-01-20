@@ -36,3 +36,7 @@ Emotion classification based on brain wave: a survey
 
 https://sccn.ucsd.edu/~arno/fam2data/publicly_available_EEG_data.html
 Free Data
+
+http://www.eecs.qmul.ac.uk/mmv/datasets/deap/doc/tac_special_issue_2011.pdf
+Emotional Classifier
+Slef-reported values of arousal, valence, like/dislike, dominance, and familiarity after watching music videos. Correlating EEG frequencies with patient's scores.
