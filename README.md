@@ -35,6 +35,7 @@ Emotion classification based on brain wave: a survey
 
 
 https://sccn.ucsd.edu/~arno/fam2data/publicly_available_EEG_data.html
+https://headit.ucsd.edu/studies
 Free Data
 
 http://www.eecs.qmul.ac.uk/mmv/datasets/deap/doc/tac_special_issue_2011.pdf
