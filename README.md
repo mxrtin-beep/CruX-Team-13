@@ -41,3 +41,36 @@ Free Data
 http://www.eecs.qmul.ac.uk/mmv/datasets/deap/doc/tac_special_issue_2011.pdf
 Emotional Classifier
 Slef-reported values of arousal, valence, like/dislike, dominance, and familiarity after watching music videos. Correlating EEG frequencies with patient's scores.
+
+
+https://myscp.onlinelibrary.wiley.com/doi/full/10.1002/jcpy.1021 (don’t know if we know enough about how to measure cognitive fluency (too many factors)  to create a project based on cog fluency) 
+How to measure processing fluency consistently across different experimental fluency manipulations 
+Which measure has the highest validity 
+They found “empirical evidence on the replicability of fluency effects” 
+The paper references the 2004 “Journal of Consumer Psychology” article by Norbert Schwartz
+Laid the groundwork for our understanding the ease/difficulty with which information can be processed 
+They recommend using one-item measures 
+Introspective and preconscious nature of cognitive processes
+conceptual/perceptual 
+
+https://www.frontiersin.org/articles/10.3389/fnins.2020.594566/full
+Is EEG suitable for Marketing Research? 
+Background: neuroscience techniques to explore the conscious and unconscious drivers of consumer behavior 
+EEG is one of the most frequency applied neuroscientific techniques for marketing studies because of its low cost and high temporal resolution
+Objective: overview EEG applications in consumer neuroscience 
+Aim to highlight reliable approaches for deriving research 
+Main applications of EEG to consumer neuroscience research/suggests ways EEG technique can complement traditional experimental paradigms
+
+https://www.researchgate.net/profile/Erik-Anderson-2/publication/220506363_A_User_Study_of_Visualization_Effectiveness_Using_EEG_and_Cognitive_Load/links/09e4150cbe586db676000000/A-User-Study-of-Visualization-Effectiveness-Using-EEG-and-Cognitive-Load.pdf (not sure what visualization techniques they are referencing, have not read) 
+A User Study of Visualization Effectiveness Using EEG and Cognitive Load
+Abstract: It is difficult to effectively evaluate visualization techniques 
+Usually feedback is from user studies and expert evaluations 
+This presents and alternative approach to visualization evaluation (what is visualization) in which brain activity is recorded by EEGs 
+Measurements used to compare different visualization techniques in terms of cognitive load (the burden they place on a viewer’s cognitive resources
+
+https://www.jneurosci.org/content/jneuro/29/24/7869.full.pdf
+EEG Oscillations to predict visual perception
+Does perception fluctuate between favorable and unfavorable periods?
+Role of brain oscillations in perception; critical to access the effects on a temporal scale that is more compatible with the temporal resolution of our visual experience
+Used signal detection in which visual stimuli we present at the threshold, but only half were received, even though all the stimuli were identical
+Average- subjects detected half of the targets
