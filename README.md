@@ -74,3 +74,7 @@ Does perception fluctuate between favorable and unfavorable periods?
 Role of brain oscillations in perception; critical to access the effects on a temporal scale that is more compatible with the temporal resolution of our visual experience
 Used signal detection in which visual stimuli we present at the threshold, but only half were received, even though all the stimuli were identical
 Average- subjects detected half of the targets
+
+
+https://openneuro.org/datasets/ds003838/versions/1.0.0
+Cognitive load dataset.
