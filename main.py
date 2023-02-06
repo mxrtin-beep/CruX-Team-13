@@ -12,15 +12,15 @@ https://openneuro.org/datasets/ds003838/versions/1.0.0
 '''
 import matplotlib.pyplot as plt
 import numpy as np
-import scipy.signal as sig
 
-import data_loader as dl
+import data_loader_pavlov as dl
+import data_loader_wang as wang
 import fourier
 import constants as const
 import spectral_power as sp
 import data_processing as dp
-
-
+import bp_filter as bp
+import classify
 
 
 # ----------------------------------------- PLOTTING ----------------------------------------------
@@ -33,21 +33,13 @@ def save_plot(filename, arr, title = '', xlabel = '', ylabel = '', label = ''):
     plt.ylabel(ylabel)
     plt.title(title)
     plt.legend()
-    plt.savefig(const.DIRECTORY + filename + ".png")
+    plt.savefig(const.CHART_DIRECTORY + filename + ".png")
  
 
 
 
 
-# ---------------------------------------------- BANDPASS ----------------------------------------------
 
-# Takes raw data, not FFT.
-def bandpass_filter(data, low_freq, high_freq, steepness = 3, sampling_rate=const.SAMPLING_RATE):
-
-	sos = sig.butter(steepness, [low_freq * 2/sampling_rate, high_freq * 2/sampling_rate], btype = "bandpass", output = "sos")
-	filt_data = sig.sosfilt(sos, data)
-
-	return filt_data
 
 
 # ---------------------------------------------- PIPELINE ----------------------------------------------
@@ -77,9 +69,9 @@ def pipeline(subjects, channels, states, waves, start=0, stop=10000, smooth=0):
 					raw_data = dl.get_channel_data(subject, channel_name, state)
 
 					if wave=='alpha':
-						bandpass_data = bandpass_filter(raw_data, low_freq=const.ALPHA_MIN, high_freq=const.ALPHA_MAX)
+						bandpass_data = bp.bandpass_filter(raw_data, low_freq=const.ALPHA_MIN, high_freq=const.ALPHA_MAX)
 					elif wave=='theta':
-						bandpass_data = bandpass_filter(raw_data, low_freq=const.THETA_MIN, high_freq=const.THETA_MAX)
+						bandpass_data = bp.bandpass_filter(raw_data, low_freq=const.THETA_MIN, high_freq=const.THETA_MAX)
 
 					#fft_data = fourier_transform(raw_data, SAMPLING_RATE, filename=str, title=str, smooth=smooth, label=state)
 
@@ -116,84 +108,52 @@ def clear_file(filename):
 	f.close()
 
 
+def classify_wang(data):
+	
+	base_times, base_data = wang.get_channel_data(1, 'Fz', 'eyesopen', 1)
+
+	base = sp.abs_band_power(base_data, const.WANG_SAMPLING_RATE, 'theta', const.WANG_SECONDS)
+
+	return classify.general_classify(data, const.WANG_SAMPLING_RATE, cutoff=(const.CUTOFF*base), n_seconds=const.WANG_SECONDS)
+
+
+def classify_pavlov(data):
+	
+	base_data = dl.get_channel_data(42, 'Fz', 'rest')
+
+	base = sp.abs_band_power(base_data, const.PAVLOV_SAMPLING_RATE, 'theta', const.PAVLOV_SECONDS)
+
+	return classify.general_classify(data, const.PAVLOV_SAMPLING_RATE, cutoff=(const.CUTOFF*base), n_seconds=const.PAVLOV_SECONDS)
+
+
+
 def main():
 
-	subjects = np.array([32, 42, 43])
-	channels = np.array(["Fz"])
-	states = np.array(['rest', 'memory'])
-	waves = np.array(['theta'])
+	base1 = 8*(10**(-13))
+	base2 = 2
 
 
-	'''
 
-	for subject in subjects:
-		mem_data = dl.get_channel_data(subject, 'Fz', 'memory')
-		rest_data = dl.get_channel_data(subject, 'Fz', 'rest')
-
-		filt_mem_data = bandpass_filter(mem_data, const.THETA_MIN, const.THETA_MAX)
-		filt_rest_data = bandpass_filter(rest_data, const.THETA_MIN, const.THETA_MAX)
+	times, data = wang.get_channel_data(1, 'Fz', 'eyesopen', 1)
+	classify_wang(data)
 
 
-		mem_power = sp.relative_band_power(filt_mem_data, const.SAMPLING_RATE, 'theta')
-		rest_power = sp.relative_band_power(filt_rest_data, const.SAMPLING_RATE, 'theta')
+	times, data = wang.get_channel_data(1, 'Fz', 'memory', 1)
+	classify_wang(data)
 
-		print("M: ", mem_power)
-		print("R: ", rest_power)
-		
-		sp.plot_spectral_power(filt_mem_data, 'memory' + str(subject), const.SAMPLING_RATE, label='memory', newFig = False)
-		sp.plot_spectral_power(filt_rest_data, 'rest' + str(subject), const.SAMPLING_RATE, label='rest', newFig = False)
-		plt.figure()
-	'''
+	
+	data = dl.get_channel_data(42, 'Fz', 'rest')
+	classify_pavlov(data)
 
-
-	n_seconds = 3
-	CHANNEL = 'Fz'
-
-
-	for subject in subjects:	# 32, 42, 43
-
-		for state in states:	# 'memory', 'rest'
-
-			data = dl.get_channel_data(subject, CHANNEL, state)
-			print(len(data))
-
-			size = n_seconds * const.SAMPLING_RATE
-
-			part_data = dp.partition_array(data, size)
-
-			average = 0
-			max_power = 0
-
-			powers = np.empty(len(part_data))
-
-			for i in range(len(part_data)):
-
-				partition = part_data[i]
-
-				filt_data = bandpass_filter(partition, const.THETA_MIN, const.THETA_MAX)
-
-				power = sp.relative_band_power(filt_data, const.SAMPLING_RATE, 'theta')
-				#power = fourier.get_theta_average(filt_data, 0, -1)
-
-				print(state, "\tPartition\t", i, "\tMax Power\t", round(max_power, 2))
-				average += power
-
-				if power > max_power:
-					max_power = power
-
-				powers[i] = power
-
-			average = round(average / len(part_data), 3)
-			max_power = round(max_power, 3)
-
-			print("Average relative power\t", state, "\t", average)
-			print("Max relative power\t", state, "\t", max_power)
-
-			name = str(subject) + "-" + state + "-" + CHANNEL
-			save_plot(name, powers[1:-1], title = name, xlabel = 'Chunk', ylabel = 'Power', label=state)
-
-		plt.figure()
+	data = dl.get_channel_data(42, 'Fz', 'memory')
+	classify_pavlov(data)
 
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+    

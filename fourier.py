@@ -5,11 +5,12 @@ import numpy as np
 
 # Given a numpy array and sampling rate,
 # returns numpy arrays of the frequencies and intensities
-def fourier_transform(data, sampling_rate, plot=True, filename='', title='', smooth=0, label=''):
+def fourier_transform(data, sampling_rate, smooth=0):
 
 	dft = np.fft.fft(data)
 	dft_freq = np.fft.fftfreq(data.size, 1/sampling_rate)
 	dft = np.abs(dft)
+	dft_freq = np.abs(dft_freq)
 
 	if smooth > 0:
 		dft = dp.smooth_array(dft, smooth)
@@ -22,38 +23,43 @@ def fourier_transform(data, sampling_rate, plot=True, filename='', title='', smo
 # average intensity of all signals within the frequency range.
 def get_frequency_mean(fft_freqs, fft_data, min_freq, max_freq):
 	
-	min_index = np.where(fft_freqs==min_freq)[0][0]
-	max_index = np.where(fft_freqs==max_freq)[0][0]
+	min_index = find_nearest_index(fft_freqs, min_freq)
+	max_index = find_nearest_index(fft_freqs, max_freq)
 
 	mean = np.mean(fft_data[min_index:max_index])
 	return mean
 
 
+def find_nearest_index(array, value):
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return idx
 
 
 
 # Given an array, takes a sub-array from start to end.
 # Then performs a Fourier transform and returns the 
 # average intensity of signals within the given frequency range.
-def get_wave_average(arr, start, end, min_freq, max_freq):
+def get_wave_average(arr, start, end, min_freq, max_freq, fs):
 
 	sub_arr = arr[start:end]
-	dft_freq, dft = fourier_transform(sub_arr, const.SAMPLING_RATE, plot=False)
+	dft_freq, dft = fourier_transform(sub_arr, fs)
+
 	return get_frequency_mean(dft_freq, dft, min_freq, max_freq)
 
 
 # Given an array, takes a sub-array from start to end.
 # Then performs a Fourier transform and returns the 
 # average intensity of theta waves.
-def get_theta_average(arr, start, end):
-	return get_wave_average(arr, start, end, const.THETA_MIN, const.THETA_MAX)
+def get_theta_average(arr, start, end, fs):
+	return get_wave_average(arr, start, end, const.THETA_MIN, const.THETA_MAX, fs)
 
 
 # Given an array, takes a sub-array from start to end.
 # Then performs a Fourier transform and returns the 
 # average intensity of alpha waves.
-def get_alpha_average(arr, start, end):
-	return get_wave_average(arr, start, end, const.ALPHA_MIN, const.ALPHA_MAX)
+def get_alpha_average(arr, start, end, fs):
+	return get_wave_average(arr, start, end, const.ALPHA_MIN, const.ALPHA_MAX, fs)
 
 
 # Given a numpy array of data, returns two numpy arrays

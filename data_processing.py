@@ -15,13 +15,10 @@ def smooth_array(arr, window_size, shift=1):
 
 	return new_arr
 
-# indexed at 0
-def get_nth_second(arr, n, sampling_rate):
 
-	start = sampling_rate * n
-	end = sampling_rate * (n + 1)
+# Partitions array arr into chunks of size size.
+def partition_array(arr, size):
 
-	if end > len(arr):
-		return arr[-sampling_rate:]
+	x = [arr[i:i+size] for i in range(0, len(arr), size)]
 
-	return arr[start:end]
+	return x
