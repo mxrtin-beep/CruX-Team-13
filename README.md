@@ -1,6 +1,14 @@
-# ThetaFlow Project Proposal
-### Measuring cognitive load with BCI.
-### Martin Bourdev, Daniel Bielin, Kyra Sunil, Amanda Dankberg, Akshyae Singh, Alex Rayo, Adelyne Tran, Kylie Bach
+<h1 align="center">
+ThetaFlow Project Proposal
+</h1>
+
+<h3 align="center">
+Measuring cognitive load with BCI.
+</h3>
+
+<h3 align="center">
+Martin Bourdev, Daniel Bielin, Kyra Sunil, Amanda Dankberg, Akshyae Singh, Alex Rayo, Adelyne Tran, Kylie Bach
+</h3>
 
 ## Narrative
 Intuitive and easy user experience is the cornerstone of any product or service. When design fails, users must tap into their limited processing power and take on cognitive load, leading to disorganization, discouragement, and poor user experience. We aim to use EEG signals to objectively measure and quantify the cognitive load experienced by a user to test and improve the usability of products and services.
@@ -20,13 +28,20 @@ We aim to expand upon the research by Pavlov’s and Wang’s teams. for the pur
 
 Our experiment will allow user experience researchers to quantify cognitive load in real time. Designers will be able to adjust design choices to improve user flow, avoid frustration and abandonment, and improve customer satisfaction and retention.
 
-###### Specific Aims:
+### Specific Aims:
 1. Develop a method to classify cleaned literature data as the product of cognitive load or rest in a binary way.
 2. Develop a method to quantify degrees of cognitive load from cleaned literature data.
 3. Record our own data and develop a method to remove artifacts such as blinks and facial movements from raw EEG data such that it matches the literature data.
 4. Build a graphic interface that can incite cognitive load in test subjects.
 5. Perform steps 1-3 with live data. Evaluate the system by performing live tests of rest and memory tasks of varying degrees of difficulty. 
 
+<p align="center">
+<img width="800" alt="image5" src="https://user-images.githubusercontent.com/52719688/217158775-09259d36-1e31-4ae8-90cb-ba6f4b3b3255.png">
+</p>
+
+<p align="center"> <i>
+Our Project Workflow.
+</p> </i>
 
 ## Research Strategy
 ### Data Acquisition
@@ -35,13 +50,34 @@ The Pavlov papers utilize frontal midline theta activity to discriminate between
 	The 2022 Pavlov paper measures patients during a digit span task. Patients listened to sequences of 5, 9, or 13 digits, each presented every two seconds, and were asked to recall them in order. The EEG data from that task represents the memory data, along with four minutes of rest as the control data.
 
 
+<p align="center">
+<img alt="image3" src="https://user-images.githubusercontent.com/52719688/217158704-431326b1-1b60-4c37-8a2c-2f154237acf7.png">
+</p>
+
+<p align="center"><i>
+The Pavlov 2022 paper experimental design and results.
+</p></i>
+
 The 2020 Pavlov paper distinguishes between retention and manipulation. The retention task only tested participants’ ability to recall a string of 5, 6, or 7 letters shown for 3000 ms, followed by a delay of 6700 ms. The manipulation task asked participants to reorganize the letters into alphabetical order. They also found a positive correlation between theta executive index and performance in working memory tasks, but not in simple retention tasks, although other authors have found a correlation between theta power and retention. The 2022 paper seems to demonstrate such a correlation. The researchers also found a negative correlation between beta index and performance.
 
+<p align="center">
+<img width="271" alt="image3" src="https://user-images.githubusercontent.com/52719688/217158694-8e7ce022-85bf-43a6-a1ca-75801291a133.png">
+</p>
 
+<p align="center"><i>
+The Pavlov 2022 data showing a spike in theta wave power in the memory task, but not in the eyes-closed rest task from the Fz electrode.
+</p></i>
 
-	
 
 The Wang paper reports partially different results. The team conducts tests of memory, memory (recalling day’s events), music (singing songs in head), and subtraction (counting backwards from 5000 by increments of 7), as well as open- and closed-eyed resting periods. The team measured log-transformed spectral power of theta and alpha waves, similarly to Pavlov’s team, and also only found theta wave spikes from the Fz electrode. Wang’s team only records a spike in theta waves in the subtraction task, not in memory. However, Wang’s team also records spikes in alpha waves from the Fz electrode, which were absent from Pavlov’s data. The spikes persisted for every task except for the eyes-opened rest period. It may be worth taking inspiration from Wang’s methods, since users will be using devices with their eyes open, and the alpha waves seem to capture more types of cognitive load. The spikes appear to be of similar magnitude with respect to task, which does not support the idea of ranking tasks by difficulty based on alpha or theta wave powers.
+
+<p align="center">
+<img alt="image3" src="https://user-images.githubusercontent.com/52719688/217158713-51b7b89d-a3ce-45f4-8d38-241279094c0e.png">
+</p>
+
+<p align="center"><i>
+The Wang 2022 data showing, from the Fz electrode, a spike in theta power for only the math task, and a spike in alpha power for all tasks except for eyes-open rest.
+</p></i>
 
 
 To at least replicate the results of the studies, we plan to conduct similar tests with a few key dimensions: task (retention vs. manipulation), load (number of digits or letters), the time the digits are shown, and the delay between the time they are shown and the time the participants are asked to recall or manipulate the letters or digits. We will measure the EEG data. To correlate the EEG data with the cognitive burden on the participants, we will measure both the accuracy of the participants’ memory or manipulation, as well as self-reported difficulty levels. A patient who achieves higher accuracy scores may have taken on more cognitive load to solve the problem, resulting in higher theta power and higher self-reported difficulty. Such a patient also may have a more efficient thought process that utilizes less cognitive load, resulting in lower theta power and lower self-reported difficulty. The self-reported component aims to distinguish between the situations where the same accuracy in solving the same task may result in differing theta powers. It may also be useful to compare the data with other biometric markers, such as pupillometry and ECG data, which the Pavlov team does.
@@ -59,11 +95,18 @@ To measure theta wave strength, we will use Welch’s method for computing the p
 We will build our signal processing and data analysis program in Python to take advantage of the variety of packages. We also plan on building our task program in Python to take advantage of the knowledge base of the team.
 The data from the 2022 Pavlov paper uses .mat format, which requires modules h5py and pandas to load. From there, numpy is used for basic matrix operations. We will use the scipy.signal package to perform Butterworth filters on data. We will also use scipy.signal to use Welch’s method for computing power spectral density. Finally, we will use the numpy fast Fourier transform package. If we choose to use neural networks to classify data, we will use either scikit-learn or keras packages.
 
-### Timeline
 
-######Winter
+<p align="center">
+<img width="552" alt="image2" src="https://user-images.githubusercontent.com/52719688/217158679-7d45f624-3c79-4bfb-aa32-b4b6bdfc4c62.png">
+</p>
 
-Week
+<p align="center"><i>
+Our Project Data Flow.
+</p></i>
+
+### Winter Week-by-Week Timeline
+
+
 1. Meet team
 2. Meet team, set up meeting time, choose topic, begin literature review
 3. More literature review, refine topic, finish concept map, begin setting up Python environment
@@ -74,6 +117,13 @@ Week
 8. Collect data, analyze collected data
 9. Collect data, analyze collected data
 10. Collect data, analyze collected data
+
+
+
+
+
+
+
 
 
 
