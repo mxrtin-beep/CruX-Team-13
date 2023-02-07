@@ -12,6 +12,11 @@ WINDOW_LENGTH = MIN_CYCLES / LOWEST_FREQ
 
 # ----------------------------------------- SPECTRAL POWER ----------------------------------------------
 
+
+# Fourier transform changes data from time to frequency domain.
+# Spectral power calculates power or strength of frequency content.
+# Magnitude normalized to a single hertz bandwidth.
+
 def spectral_power(data, sampling_rate, window_length = WINDOW_LENGTH):
 
 	win = window_length * sampling_rate # window length: 2 seconds
@@ -20,21 +25,38 @@ def spectral_power(data, sampling_rate, window_length = WINDOW_LENGTH):
 	return freqs, psd
 
 
-def plot_spectral_power(data, filename, sampling_rate, label='', newFig = True):
+def plot_spectral_power(data, filename, sampling_rate, min_freq = 0, max_freq = 60, label='', new_fig = True, show_theta = False, show_alpha = False):
 
-	if newFig:
+	if new_fig:
 		plt.figure()
 
 	freqs, psd = spectral_power(data, sampling_rate)
+
+
+	if show_theta:
+		plt.vlines(x = [const.THETA_MIN, const.THETA_MAX], ymin = 0, ymax = max(psd[min_freq:max_freq]),
+           colors = 'purple',
+           label = 'Theta Range')
+	if show_alpha:
+ 		plt.vlines(x = [const.ALPHA_MIN, const.ALPHA_MAX], ymin = 0, ymax = max(psd[min_freq:max_freq]),
+           colors = 'red',
+           label = 'Alpha Range')
+
 	plt.plot(freqs, psd, label=label)
+	plt.xlim(min_freq, max_freq)
+	plt.ylim(0, np.max(psd[min_freq+2:max_freq])*1.5)
 	plt.xlabel('Frequency (Hz)')
 	plt.ylabel('Power spectral density (V^2 / Hz)')
 	plt.title("Welch's periodogram")
-	name = const.DIRECTORY + filename + '.png'
+
+
+	
+
+	name = const.CHART_DIRECTORY + filename + '.png'
+	plt.legend()
 	plt.savefig(name)
 
-	if newFig:
-		plt.figure()
+	
 
 
 def abs_band_power(data, sampling_rate, wave, window_length=WINDOW_LENGTH):
