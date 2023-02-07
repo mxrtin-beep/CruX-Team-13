@@ -2,13 +2,13 @@
 ThetaFlow Project Proposal
 </h1>
 
-<h3 align="center">
+<p align="center">
 Measuring cognitive load with BCI.
-</h3>
+</p>
 
-<h3 align="center">
+<p align="center">
 Martin Bourdev, Daniel Bielin, Kyra Sunil, Amanda Dankberg, Akshyae Singh, Alex Rayo, Adelyne Tran, Kylie Bach
-</h3>
+</p>
 
 ## Narrative
 Intuitive and easy user experience is the cornerstone of any product or service.[<sup>1</sup>](https://www.nngroup.com/articles/minimize-cognitive-load/) When design fails, users must tap into their limited processing power and take on cognitive load, leading to disorganization, discouragement, and poor user experience. We aim to use EEG signals to objectively measure and quantify the cognitive load experienced by a user to test and improve the usability of products and services.
