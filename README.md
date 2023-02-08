@@ -68,6 +68,13 @@ The 2020 Pavlov paper distinguishes between retention and manipulation. The rete
 The Pavlov 2022 data showing a spike in theta wave power in the memory task, but not in the eyes-closed rest task from the Fz electrode.
 </p></i>
 
+<p align="center">
+<img width="271" alt="image3" src="https://user-images.githubusercontent.com/52719688/217446326-daacb6e9-34c2-4f39-9c4e-9fc9f31d932c.png">
+</p>
+
+<p align="center"><i>
+Recreation of Pavlov 2022 paper results (Patient 43, Channel Fz).
+</p></i>
 
 The Wang paper reports partially different results. The team conducts tests of memory, memory (recalling day’s events), music (singing songs in head), and subtraction (counting backwards from 5000 by increments of 7), as well as open- and closed-eyed resting periods. The team measured log-transformed spectral power of theta and alpha waves, similarly to Pavlov’s team, and also only found theta wave spikes from the Fz electrode. Wang’s team only records a spike in theta waves in the subtraction task, not in memory. However, Wang’s team also records spikes in alpha waves from the Fz electrode, which were absent from Pavlov’s data. The spikes persisted for every task except for the eyes-opened rest period. It may be worth taking inspiration from Wang’s methods, since users will be using devices with their eyes open, and the alpha waves seem to capture more types of cognitive load. The spikes appear to be of similar magnitude with respect to task, which does not support the idea of ranking tasks by difficulty based on alpha or theta wave powers.
 
@@ -77,6 +84,14 @@ The Wang paper reports partially different results. The team conducts tests of m
 
 <p align="center"><i>
 The Wang 2022 data showing, from the Fz electrode, a spike in theta power for only the math task, and a spike in alpha power for all tasks except for eyes-open rest.
+</p></i>
+
+<p align="center">
+<img alt="image3" src="https://user-images.githubusercontent.com/52719688/217446328-051302d8-708f-4693-b44a-2b5c8a6bf6ba.png">
+</p>
+
+<p align="center"><i>
+Recreation of the Wang 2022 paper results (Patient 1, Session 1, Channel Fz).
 </p></i>
 
 
