@@ -79,7 +79,7 @@ Recreation of Pavlov 2022 paper results (Patient 43, Channel Fz).
 The Wang paper reports partially different results. The team conducts tests of memory, memory (recalling day’s events), music (singing songs in head), and subtraction (counting backwards from 5000 by increments of 7), as well as open- and closed-eyed resting periods. The team measured log-transformed spectral power of theta and alpha waves, similarly to Pavlov’s team, and also only found theta wave spikes from the Fz electrode. Wang’s team only records a spike in theta waves in the subtraction task, not in memory. However, Wang’s team also records spikes in alpha waves from the Fz electrode, which were absent from Pavlov’s data. The spikes persisted for every task except for the eyes-opened rest period. It may be worth taking inspiration from Wang’s methods, since users will be using devices with their eyes open, and the alpha waves seem to capture more types of cognitive load. The spikes appear to be of similar magnitude with respect to task, which does not support the idea of ranking tasks by difficulty based on alpha or theta wave powers.
 
 <p align="center">
-<img alt="image3" src="https://user-images.githubusercontent.com/52719688/217158713-51b7b89d-a3ce-45f4-8d38-241279094c0e.png">
+<img alt="image3" src="https://user-images.githubusercontent.com/52719688/217447190-d2652397-48a0-4463-9322-79d0d23026e7.png">
 </p>
 
 <p align="center"><i>
