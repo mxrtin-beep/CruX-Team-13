@@ -12,6 +12,10 @@ https://openneuro.org/datasets/ds003838/versions/1.0.0
 '''
 import matplotlib.pyplot as plt
 import numpy as np
+import muselsl
+import os
+from time import time, strftime, gmtime
+
 
 import data_loader_pavlov as pavlov_dl
 import data_loader_wang as wang_dl
@@ -21,6 +25,8 @@ import spectral_power as sp
 import data_processing as dp
 import bp_filter as bp
 import classify
+import mne_processing as mnep
+import stream
 
 
 # ----------------------------------------- PLOTTING ----------------------------------------------
@@ -70,13 +76,14 @@ def classify_pavlov(data):
 
 def main():
 
-
+	
+	'''
 	tasks = np.array(['eyesopen', 'eyesclosed', 'memory', 'mathematic', 'music'])
 
 	for i in range(len(tasks)):
 		task = tasks[i]
 
-		times, data = wang_dl.get_channel_data(1, 'Fz', task, 1)
+		times, data = wang_dl.get_channel_data(1, 'AF7', task, 1)
 		if i == 0:
 			sp.plot_spectral_power(data, 'Wang Paper Results', const.WANG_SAMPLING_RATE, 2, 20, label=task, new_fig=True, show_theta=True, show_alpha=True)
 		else:
@@ -90,27 +97,40 @@ def main():
 	for i in range(len(tasks)):
 		task = tasks[i]
 
-		data = pavlov_dl.get_channel_data(43, 'Fz', task)
+		data = pavlov_dl.get_channel_data(43, 'AF7', task)
 		if i == 0:
 			sp.plot_spectral_power(data, 'Pavlov Paper Results', const.PAVLOV_SAMPLING_RATE, 2, 20, label=task, new_fig=True, show_theta=True, show_alpha=True)
 		else:
 			sp.plot_spectral_power(data, 'Pavlov Paper Results', const.PAVLOV_SAMPLING_RATE, 2, 20, label=task, new_fig=False, show_theta=False, show_alpha=False)
 
 		classify_pavlov(data)
+	'''
+	
+	'''
+	filename = 'sub-01_ses-session1_eeg_sub-01_ses-session1_task-eyesclosed_eeg.vhdr'
+	directory = 'assets/Wang/'
 
+	raw = mnep.load_raw_data(filename, directory)
+	clean = mnep.get_clean_data(raw, 1.0, 30.0, 0)
+	print(clean)
+	print(clean.ch_names)
+	print(clean.info)
+	print(clean.times)
 
-	#times, data = wang.get_channel_data(1, 'Fz', 'memory', 1)
-	#classify_wang(data)
-	#sp.plot_spectral_power(data, "wang-memory", const.WANG_SAMPLING_RATE, 2, 20,label='memory', new_fig=False, show_theta=True, show_alpha=True)
-
+	# numpy array of shape (n_epochs, n_channels, n_times)
+	print(clean.get_data(picks=['AF7']))
+	'''
+	
+	
+	raw1 = stream.get_muse_stream_data(2)
+	raw2 = stream.get_muse_stream_data(2)
 
 	
-	#data = dl.get_channel_data(42, 'Fz', 'rest')
-	#classify_pavlov(data)
 
-	#data = dl.get_channel_data(42, 'Fz', 'memory')
-	#classify_pavlov(data)
+	#filename = 'example_data.csv'
+	#directory = 'assets/'
 
+	#print(mnep.load_csv_data(filename, directory))
 
 if __name__ == "__main__":
     main()
