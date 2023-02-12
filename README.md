@@ -144,3 +144,4 @@ Using Muse: https://seen-operation-ac3.notion.site/Using-Muse-Data-5a8e2658e0ce4
 
 Introduction to MNE: https://www.notion.so/Using-MNE-to-Analyze-CSV-Files-930cccee777149e285db625f75f1ef9c?pvs=4
 
+Using MNE to Remove Artifacts: https://www.notion.so/Using-MNE-To-Remove-Artifacts-758cee13fd0d4ac0a3d2b4bc8885104c?pvs=4
