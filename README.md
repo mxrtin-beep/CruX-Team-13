@@ -142,6 +142,5 @@ Data Analysis: https://seen-operation-ac3.notion.site/Data-Analysis-0da1d6452381
 
 Using Muse: https://seen-operation-ac3.notion.site/Using-Muse-Data-5a8e2658e0ce4a7a86da7b758e15c44c
 
-
-
+Introduction to MNE: https://www.notion.so/Using-MNE-to-Analyze-CSV-Files-930cccee777149e285db625f75f1ef9c?pvs=4
 
