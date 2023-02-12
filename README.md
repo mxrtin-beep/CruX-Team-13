@@ -140,8 +140,7 @@ Getting Started: https://seen-operation-ac3.notion.site/Getting-Started-d62f6d18
 
 Data Analysis: https://seen-operation-ac3.notion.site/Data-Analysis-0da1d64523814c13a1f45dc90edac1d8
 
-
-
+Using Muse: https://seen-operation-ac3.notion.site/Using-Muse-Data-5a8e2658e0ce4a7a86da7b758e15c44c
 
 
 
