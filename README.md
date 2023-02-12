@@ -136,10 +136,9 @@ Our Project Data Flow.
 
 ### Guides
 
-Getting Started: https://www.notion.so/Getting-Started-d62f6d181a9e4f5c9088045be5a7d4e7?pvs=4
+Getting Started: https://seen-operation-ac3.notion.site/Getting-Started-d62f6d181a9e4f5c9088045be5a7d4e7
 
 Data Analysis: https://seen-operation-ac3.notion.site/Data-Analysis-0da1d64523814c13a1f45dc90edac1d8
-
 
 
 
