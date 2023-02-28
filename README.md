@@ -54,7 +54,58 @@ We will build a program to use EEG data to measure cognitive load in real time t
 
 <b>Detailed Approach</b>
 
+Participant (30 UCLA student volunteers → recruitment through request)
+* 7-9 hours of sleep
+* No alcohol or caffeine that day
+* Age 18-21
+* Native english speakers
+* No history of neurological or mental diseases 
+* No psychiatric drugs 3 months prior to recording 
+* No history of head trauma 
+
+Set up: A computer screen, dark room, and a comfortable chair. 
+
+Experiment: Mimicking shopping online
+
+Goal: Purchase 2 items (each item is numbered)
+
+Clean website (control): 
+
+Speed: 1.5 seconds
+Color: White with black text 
+Clutter: Cleaner version: (actions split into different sections)
+1. Home page begins with a start button 
+2. The user has the choice to choose from 5 rectangles (each are labeled with an item) 
+3. If the user clicks on an item, they can click on the button “Add to Cart” to add the item to cart
+4. After the user adds all their items to the cart and the lower corner will be a “buy” button
+5. After they select buy it will bring them to another page that shows an order confirmation 
+
+Make all 30 participants do all 3 trials (randomized order):
+1. Alter loading speed of page when a change to the cart is made (Ideal loading time: 1-2 seconds)
+  a. Slow speed (4 seconds) vs. Regular speed (1- 2 seconds) vs. Fast (<1 second) 
+2. Inverted colors vs regular colors (Dark mode vs light mode)
+  a. Dark text on white page
+  b. White text on dark page
+  c. Colors vs black and white
+3. Alter amount of “clutter” (overstimulation with more buttons on a page) 
+  a. Clutter (all buttons on the same page) vs. Cleaner (actions split into sections)
+
+After each trial: questionnaire of self-reported user experience (ex. How easy was it to purchase the items)  
+
+Build a mimic of the website with PsychoPy. 
+
+
 <b>Considerations and Alternatives</br>
+* May need to build the website with a different platform 
+* Is it possible to randomize volunteers? 
+* Alternative for Test #1 (loading speed) 
+  * Have the users memorize the items they need to buy, then have them wait a duration, and ask them to purchase them (test retention) 
+* Alternative for Test #2 (Inverted colors B/W)
+  * If the inverse of colors does not invoke a measurable change in cognitive load, we could change the colors (complimentary colors vs. opposite colors) 
+* Alternative for Test #3 (Clutter) 
+  * We could add more items to purchase (more options → more buttons → more clutter)
+
+
 
 ### 4. Data Collection and Processing
 
@@ -66,7 +117,18 @@ We will build a program to use EEG data to measure cognitive load in real time t
 
 <b>Detailed Approach</b>
 
+* Real-time analysis is important to efficiently pinpoint the causes of cognitive load by allowing researchers to classify cognitive load as it is occurring.
+* In order to perform real-time analysis, the live EEG data will be segmented into chunks of 100-millisecond length and fed to the classification pipeline.
+* The spectral power will be calculated using the method described in section 5 on that chunk.
+* There will be a live spectral power graph maintained with the average of the last 1-second segment of data.
+* The live spectral power graph will be used to classify the presence of cognitive load in the subject using the classification method in section 5.
+* This approach should provide a second-by-second method of classification. Given that the experimental design in section 3 involves tests lasting more than one second, this method should be sufficient to match the cognitive load recorded with the task performed by the subject.
+
+
 <b>Considerations and Alternatives</br>
+* It is possible that the program may not be able to calculate the periodogram and classify the cognitive load every 0.1 seconds. In that case, the chunk length may be increased to at most one second and the rolling average spectral power may be increased to 5 seconds.
+* It is possible that a rolling average spectral power that covers 1-5 seconds may average over the spike in theta power. In that case, a rolling max theta power may be used instead of the average.
+
 
 ### Winter Week-by-Week Timeline
 
