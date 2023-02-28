@@ -27,31 +27,42 @@ We will build a program to use EEG data to measure cognitive load in real time t
 
 ## Approach
 
-# 1. Binary Classification
+### 1. Binary Classification
 
 <b>Detailed Approach</b>
 
 <b>Considerations and Alternatives</br>
 
-# 2. Regression
+### 2. Regression
+
+<b>Detailed Approach</b>
+* We will use Welch’s method with a window of two seconds to create a periodogram.
+* Given clean data, we will analyze the absolute spectral power and focus on the theta waves, from 4 Hz to 7 Hz.
+* We will store the average absolute theta wave power of a resting patient as a baseline.
+* We will compare the average theta wave power from 4 Hz to 7 Hz to the baseline to gauge the degree of cognitive load. It will be judged as cognitive load if the average power is at least 20% greater than the baseline.
+  * The Pavlov 2020 paper found a difference in as much as 40% between the memory task and retention task theta powers.4
+  * The retention task achieved roughly 20% greater power than the baseline in the Pavlov 2020 paper.
+* We will measure at the Fz electrode (frontal midline).
+
+
+<b>Considerations and Alternatives</br>
+* It is possible that different patients will have a different baseline spectral power to compare to. If we find that that is the case, we will incorporate a calibration period for each patient.
+* It is possible that whether the patient’s eyes are closed or open complicates the theta power. The Pavlov 2022 paper utilized eyes-closed resting and observed no spike in theta power.3 However, the Wang paper tested both eyes-closed and eyes-open resting and observed a theta power spike in the eyes-closed trials.5 The paper found a spike in theta power for memory tasks relative to the eyes-open trials only. We will measure both eyes-open and eyes-closed to confirm the correct baseline.
+
+
+### 3. Graphical User Interface
 
 <b>Detailed Approach</b>
 
 <b>Considerations and Alternatives</br>
 
-# 3. Graphical User Interface
+### 4. Data Collection and Processing
 
 <b>Detailed Approach</b>
 
 <b>Considerations and Alternatives</br>
 
-# 4. Data Collection and Processing
-
-<b>Detailed Approach</b>
-
-<b>Considerations and Alternatives</br>
-
-# 5. Real-Time Analysis
+### 5. Real-Time Analysis
 
 <b>Detailed Approach</b>
 
