@@ -31,7 +31,7 @@ We will build a program to use EEG data to measure cognitive load in real time t
 
 <b>Detailed Approach</b>
 
-<b>Considerations and Alternatives</br>
+<b>Considerations and Alternatives</b>
 
 ### 2. Regression
 
@@ -45,7 +45,7 @@ We will build a program to use EEG data to measure cognitive load in real time t
 * We will measure at the Fz electrode (frontal midline).
 
 
-<b>Considerations and Alternatives</br>
+<b>Considerations and Alternatives</b>
 * It is possible that different patients will have a different baseline spectral power to compare to. If we find that that is the case, we will incorporate a calibration period for each patient.
 * It is possible that whether the patient’s eyes are closed or open complicates the theta power. The Pavlov 2022 paper utilized eyes-closed resting and observed no spike in theta power.3 However, the Wang paper tested both eyes-closed and eyes-open resting and observed a theta power spike in the eyes-closed trials.5 The paper found a spike in theta power for memory tasks relative to the eyes-open trials only. We will measure both eyes-open and eyes-closed to confirm the correct baseline.
 
@@ -82,20 +82,20 @@ Clutter: Cleaner version: (actions split into different sections)
 
 Make all 30 participants do all 3 trials (randomized order):
 1. Alter loading speed of page when a change to the cart is made (Ideal loading time: 1-2 seconds)
-  a. Slow speed (4 seconds) vs. Regular speed (1- 2 seconds) vs. Fast (<1 second) 
+  1. Slow speed (4 seconds) vs. Regular speed (1- 2 seconds) vs. Fast (<1 second) 
 2. Inverted colors vs regular colors (Dark mode vs light mode)
-  a. Dark text on white page
-  b. White text on dark page
-  c. Colors vs black and white
+  1. Dark text on white page
+  2. White text on dark page
+  3. Colors vs black and white
 3. Alter amount of “clutter” (overstimulation with more buttons on a page) 
-  a. Clutter (all buttons on the same page) vs. Cleaner (actions split into sections)
+  1. Clutter (all buttons on the same page) vs. Cleaner (actions split into sections)
 
 After each trial: questionnaire of self-reported user experience (ex. How easy was it to purchase the items)  
 
 Build a mimic of the website with PsychoPy. 
 
 
-<b>Considerations and Alternatives</br>
+<b>Considerations and Alternatives</b>
 * May need to build the website with a different platform 
 * Is it possible to randomize volunteers? 
 * Alternative for Test #1 (loading speed) 
@@ -111,7 +111,7 @@ Build a mimic of the website with PsychoPy.
 
 <b>Detailed Approach</b>
 
-<b>Considerations and Alternatives</br>
+<b>Considerations and Alternatives</b>
 
 ### 5. Real-Time Analysis
 
@@ -125,7 +125,7 @@ Build a mimic of the website with PsychoPy.
 * This approach should provide a second-by-second method of classification. Given that the experimental design in section 3 involves tests lasting more than one second, this method should be sufficient to match the cognitive load recorded with the task performed by the subject.
 
 
-<b>Considerations and Alternatives</br>
+<b>Considerations and Alternatives</b>
 * It is possible that the program may not be able to calculate the periodogram and classify the cognitive load every 0.1 seconds. In that case, the chunk length may be increased to at most one second and the rolling average spectral power may be increased to 5 seconds.
 * It is possible that a rolling average spectral power that covers 1-5 seconds may average over the spike in theta power. In that case, a rolling max theta power may be used instead of the average.
 
