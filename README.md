@@ -237,9 +237,9 @@ The signal processing will begin with the removal of artifacts such as eye blink
 ## Figures
 
 <p align="center">
+  <img width=800 src="https://user-images.githubusercontent.com/52719688/225142773-66a13267-fd25-47ba-875b-ca5b52f1e1cb.png">
  
-  <img width=500 src="https://user-images.githubusercontent.com/52719688/225142773-66a13267-fd25-47ba-875b-ca5b52f1e1cb.png">
- <i>GUI Flowchart</i>
+  <i>GUI Flowchart</i>
 </p>
 
 
