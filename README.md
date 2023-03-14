@@ -236,13 +236,25 @@ The signal processing will begin with the removal of artifacts such as eye blink
 
 ## Figures
 
-<p align="left">
+<p align="center">
+ <img width=50% src="https://user-images.githubusercontent.com/52719688/225146607-6a4d7f89-150d-4e71-84a6-49375d744c3e.png">
+</p>
+
+<p align="center"><i>Data Flow Flowchart</i></p>
+
+<p align="center">
+ <img width=50% src="https://user-images.githubusercontent.com/52719688/225146239-c6dfebff-53e9-48c0-bc15-8ca34b6ceae7.png">
+</p>
+
+<p align="center"><i>Data Processing Flowchart</i></p>
+
+<p align="center">
  <img width=50% src="https://user-images.githubusercontent.com/52719688/225142773-66a13267-fd25-47ba-875b-ca5b52f1e1cb.png">
 </p>
 
 <p align="center"><i>GUI Flowchart</i></p>
 
-<p align="left">
+<p align="center">
  <img width=50% src="https://user-images.githubusercontent.com/52719688/225145819-83e22562-3e17-4e51-bff2-6e50af99bf50.png">
 </p>
 
