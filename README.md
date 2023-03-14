@@ -236,6 +236,9 @@ The signal processing will begin with the removal of artifacts such as eye blink
 
 ## Figures
 
+![GUI Flowchart](https://user-images.githubusercontent.com/52719688/225142193-f0cacfd2-39ce-4ffe-b337-8b4ac970a47f.png)
+
+
 ## References
 
 1. Experience, World Leaders in Research-Based User. n.d. “Minimize Cognitive Load to Maximize Usability.” Nielsen Norman Group. Accessed February 21, 2023. https://www.nngroup.com/articles/minimize-cognitive-load/.
