@@ -27,7 +27,7 @@ We will build a program to use EEG data to measure cognitive load in real time t
 
 * Good product design demands as little cognitive effort from the user as possible.
 * Poor design characteristics, such as long load times, clutter, unintuitive functionality, hidden information, poor feedback, and clashing colors can cause cognitive strain and turn users away from products.
-* Data study from 2016 shows that over half of visits to a mobile site are abandoned if the loading time is greater than three seconds, a 32% increase in abandonment from a one-second load time.2 As load time increases to six seconds, the chance of abandonment doubles, a 200% increase in abandonment from a one-second load time.2
+* Data study from 2016 shows that over half of visits to a mobile site are abandoned if the loading time is greater than three seconds, a 32% increase in abandonment from a one-second load time.[<sup>2</sup>](https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/mobile-site-load-time-statistics/) As load time increases to six seconds, the chance of abandonment doubles, a 200% increase in abandonment from a one-second load time.[<sup>2</sup>](https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/mobile-site-load-time-statistics/)
 * ThetaFlow will allow companies to objectively measure cognitive load suffered by users and improve design.
 
 ## Approach
@@ -36,11 +36,11 @@ We will build a program to use EEG data to measure cognitive load in real time t
 
 <b>Detailed Approach</b>
 
-* We will attempt binary classification on the Pavlov 2022 dataset.3 
+* We will attempt binary classification on the Pavlov 2022 dataset.[<sup>3</sup>](https://doi.org/10.18112/OPENNEURO.DS003838.V1.0.3) 
  * The data is cleaned and filtered.
  * The dataset includes 77 patients with EEG data. The researchers used Fpz as the ground and FCz as the reference and sampled at 1000 Hz.
  * Each patient includes a rest and memory .set file, requiring the python h5py package to open. Each session includes detailed labels for the event occurring at any time. 
-* We will also attempt binary classification on the Wang 2022 dataset.7
+* We will also attempt binary classification on the Wang 2022 dataset.[<sup>7</sup>](https://doi.org/10.18112/OPENNEURO.DS004148.V1.0.1)
  * The data is cleaned and filtered. The team used FCz as the reference electrode and sampled at 500 Hz.
  * The dataset includes 60 patients with EEG data. Each patient has 3 sessions.
  * Each session includes .eeg, .vhdr, and .vmrk files for tasks, requiring the python MNE package to open. The session includes resting with eyes closed and open, as well as math, memory, and music tasks.
@@ -49,7 +49,7 @@ We will build a program to use EEG data to measure cognitive load in real time t
 * Given clean data, we will analyze the absolute spectral power and focus on the theta waves, from 4 Hz to 7 Hz.
 * We will store the average absolute and relative theta wave power of a resting patient as a baseline.
 * We will compare the average theta wave power from 4 Hz to 7 Hz to the baseline to gauge whether or not cognitive load is present. It will be judged as cognitive load if the average power is at least 15% greater than the baseline.
- * The retention task achieved roughly 20% greater power than the baseline in the Pavlov 2020 paper, which used relative power.
+ * The retention task achieved roughly 20% greater power than the baseline in the Pavlov 2020 paper, which used relative power.[<sup>5</sup>](https://doi.org/10.1038/s41598-020-72940-5)
  * The baseline will be measured by having subjects stare at a fixation point on the screen for 30 seconds with their eyes open.
 * We will measure at the Fz electrode (frontal midline).
 
@@ -57,7 +57,8 @@ We will build a program to use EEG data to measure cognitive load in real time t
 <b>Considerations and Alternatives</b>
 
 * It is possible that comparing each patient’s readings to their own baseline does not provide useful information or is not feasible. In that case, we will compare readings to a baseline level composed of the average of several patients.
-* It is possible that whether the patient’s eyes are closed or open complicates the theta power. The Pavlov 2022 paper utilized eyes-closed resting and observed no spike in theta power.4 However, the Wang paper tested both eyes-closed and eyes-open resting and observed a theta power spike in the eyes-closed trials.6 The paper found a spike in theta power for memory tasks relative to the eyes-open trials only. We will measure both eyes-open and eyes-closed to confirm the correct baseline.
+* It is possible that whether the patient’s eyes are closed or open complicates the theta power. The Pavlov 2022 paper utilized eyes-closed resting and observed no spike in theta power.[<sup>4</sup>](https://doi.org/10.1038/s41597-022-01414-2)
+*  However, the Wang paper tested both eyes-closed and eyes-open resting and observed a theta power spike in the eyes-closed trials.[<sup>6</sup>](https://doi.org/10.1038/s41597-022-01607-9) The paper found a spike in theta power for memory tasks relative to the eyes-open trials only. We will measure both eyes-open and eyes-closed to confirm the correct baseline.
 
 ### 2. Regression
 
@@ -81,7 +82,7 @@ We will build a program to use EEG data to measure cognitive load in real time t
 
 <b>Considerations and Alternatives</b>
 * It is possible that different patients will have a different baseline spectral power to compare to. If we find that that is the case, we will incorporate a calibration period for each patient.
-* It is possible that whether the patient’s eyes are closed or open complicates the theta power. The Pavlov 2022 paper utilized eyes-closed resting and observed no spike in theta power.4 However, the Wang paper tested both eyes-closed and eyes-open resting and observed a theta power spike in the eyes-closed trials.6 The paper found a spike in theta power for memory tasks relative to the eyes-open trials only. We will measure both eyes-open and eyes-closed to confirm the correct baseline.
+* It is possible that whether the patient’s eyes are closed or open complicates the theta power. The Pavlov 2022 paper utilized eyes-closed resting and observed no spike in theta power.[<sup>4</sup>](https://doi.org/10.1038/s41597-022-01414-2) However, the Wang paper tested both eyes-closed and eyes-open resting and observed a theta power spike in the eyes-closed trials.[<sup>6</sup>](https://doi.org/10.1038/s41597-022-01607-9) The paper found a spike in theta power for memory tasks relative to the eyes-open trials only. We will measure both eyes-open and eyes-closed to confirm the correct baseline.
 * It is possible that the cognitive load, in addition to being a function of the patient, is a function of both the difficulty of the task as well as the effort exerted by the patient, self-reported after the trial. If that is true, then the same task may elicit very different levels of cognitive load from patients, and different tasks may elicit the same cognitive load from different patients. We will gauge from our own trials how and if measured theta wave power is a function of both task difficulty, task success, and reported difficulty.
 * It is possible that multi-class classification may be unrealistic for the Wang dataset. It may be impossible to objectively rank completely different tasks in difficulty level and therefore expected cognitive load. The tasks with the highest and lowest theta wave power may differ depending on the person. 
  * This is unlike the Pavlov task, where each higher difficulty level is quantitatively more challenging. Everyone should struggle more on the longer memory task than the shorter one. In contrast, some people may struggle more with the music task in the Wang experiment, whereas some people may struggle more with the arithmetic task.
