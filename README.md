@@ -72,10 +72,10 @@ We will build a program to use EEG data to measure cognitive load in real time t
 * Given clean data, we will analyze the absolute spectral power and focus on the theta waves, from 4 Hz to 7 Hz.
 * We will store the average absolute theta wave power of a resting patient as a baseline.
 * We will compare the average theta wave power from 4 Hz to 7 Hz to the baseline to gauge the degree of cognitive load. The degree of cognitive load will be separated into 4 classes based on the percent increase in theta wave power from baseline:
- 1. 10%-20%
- 2. 20%-30%
- 3. 30%-40%
- 4. >40%
+   1. 10%-20%
+   2. 20%-30%
+   3. 30%-40%
+   4. 40%+
 * We will measure at the Fz electrode (frontal midline).
 
 
