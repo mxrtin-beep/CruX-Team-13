@@ -1,0 +1,115 @@
+.item-1 {
+    display: block;
+    width: 20%;
+    background-color: #ffffff;
+    padding: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: 100px;
+    margin-left: 220px;
+
+  }
+
+.item-2 {
+    display: block;
+    width: 20%;
+    background-color: #ffffff;
+    padding: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: -127px;
+    margin-left: 570px; 
+
+ }
+
+ .item-3 {
+    display: block;
+    width: 20%;
+    background-color: #ffffff;
+    padding: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: -127px;
+    margin-left: 920px;
+ 
+  }
+
+  .item-4 {
+    display: block;
+    width: 20%;
+    background-color: #ffffff;
+    padding: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: 130px; 
+    margin-left: 400px; 
+
+ }
+
+ .item-5 {
+   display: block;
+   width: 20%;
+   background-color: #ffffff;
+   padding: 50px;
+   font-size: 20px;
+   cursor: pointer;
+   text-align: center;
+   border: 2px solid rgb(0, 0, 0); 
+   margin-top: -127px;
+   margin-left: 750px; 
+ }
+
+
+
+ .add-to-cart {
+   display: block;
+   width: 200px;
+   background-color: #ffffff;
+   padding: 30px;
+   font-size: 20px;
+   cursor: pointer;
+   text-align: center;
+   border: 2px solid rgb(0, 0, 0); 
+   margin-top: 100px;
+   margin-left: 1200px;
+}
+  
+
+ .back {
+    display: block;
+    width: 200px;
+    background-color: #ffffff;
+    padding: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: 20px;
+    margin-left: 50px;
+ 
+ }
+
+
+
+ .next {
+    display: block;
+    width: 200px;
+    background-color: #ffffff;
+    padding: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: -82px;
+    margin-left: 1200px; 
+ }
+
+
