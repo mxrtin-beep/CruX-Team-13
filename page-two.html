@@ -9,20 +9,76 @@
 </head>
 <body>
   <app-root></app-root>
-  <button onclick="disableButton(this)" class="item-1">Item 1</button>
-  <button onclick="disableButton(this)" class="item-2">Item 2</button>
-  <button onclick="disableButton(this)" class="item-3">Item 3</button>
-  <button onclick="disableButton(this)" class="item-4">Item 4</button>
-  <button onclick="disableButton(this)" class="item-5">Item 5</button>
-  <button type="button" class="add-to-cart">Add to Cart</button>
+  <button onclick="select(this)" class="item-1" id='1'>Item 1</button>
+  <button onclick="select(this)" class="item-2" id='2' >Item 2</button>
+  <button onclick="select(this)" class="item-3" id='3'>Item 3</button>
+  <button onclick="select(this)" class="item-4" id='4'>Item 4</button>
+  <button onclick="select(this)" class="item-5" id='5'>Item 5</button>
+  <button type="button" class="add-to-cart" onclick='addToCart()'>Add to Cart</button>
 
+  <ul id='Selected'></ul>
   <script>
-    function disableButton(button){
-      button.disabled = true;
+
+    b1 = document.getElementById('1');
+    b1.style.color = 'black';
+
+    b2 = document.getElementById('2');
+    b2.style.color = 'black';
+
+    b3 = document.getElementById('3');
+    b3.style.color = 'black';
+
+    b4 = document.getElementById('4');
+    b4.style.color = 'black';
+
+    b5 = document.getElementById('5');
+    b5.style.color = 'black';
+
+    function select(button){
+      
+      if(button.style.color == 'black') 
+      {
+        button.style.color = 'blue';
+        var selectedList = document.getElementById('Selected');
+        var item = document.createElement('item')
+        item.setAttribute('id', 'li'+button.id)
+        item.appendChild(document.createTextNode('Item ' + button.id + '\n'))
+        selectedList.appendChild(item)
+        //cartList.innerHTML += '<li>Item ' + button.id + '</li>';
+      } 
+      else {
+        
+        //document.write('hi');
+        var selectedList = document.getElementById('Selected');
+        var item = document.getElementById('li'+button.id);
+        selectedList.removeChild(item);
+        button.style.color = 'black';
+        return;
+      }
+      //console.log(getComputedStyle(button).color);
+    }
+
+
+
+    function addToCart(){
+
+      var selectedList = document.getElementById('Selected');
+      var cartList = document.getElementById('Cart');
+
+      cartList = selectedList.cloneNode(true);
+
+      while (selectedList.firstChild) {
+        selectedList.removeChild(selectedList.firstChild);
+      }
+      console.log(selectedList.firstChild);
+      console.log(cartList.firstChild);
     }
   </script>
 
+  
+  
   <a href = "ThetaFlow.html"><button type="button" class="back2">Back</button></a>
   <a href = "page-three.html"><button type="button" class="next2">Next</button> </a>
+  <ul id='Cart'></ul>
 </body>
 </html>

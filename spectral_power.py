@@ -34,11 +34,11 @@ def plot_spectral_power(data, filename, sampling_rate, min_freq = 0, max_freq = 
 
 
 	if show_theta:
-		plt.vlines(x = [const.THETA_MIN, const.THETA_MAX], ymin = 0, ymax = max(psd[min_freq:max_freq]),
+		plt.vlines(x = [const.THETA_MIN, const.THETA_MAX], ymin = 0, ymax = np.max(psd[min_freq+2:max_freq])*1.5,
            colors = 'purple',
            label = 'Theta Range')
 	if show_alpha:
- 		plt.vlines(x = [const.ALPHA_MIN, const.ALPHA_MAX], ymin = 0, ymax = max(psd[min_freq:max_freq]),
+ 		plt.vlines(x = [const.ALPHA_MIN, const.ALPHA_MAX], ymin = 0, ymax = np.max(psd[min_freq+2:max_freq])*1.5,
            colors = 'red',
            label = 'Alpha Range')
 

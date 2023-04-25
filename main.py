@@ -12,7 +12,7 @@ https://openneuro.org/datasets/ds003838/versions/1.0.0
 '''
 import matplotlib.pyplot as plt
 import numpy as np
-import muselsl
+#import muselsl
 import os
 from time import time, strftime, gmtime
 
@@ -76,7 +76,19 @@ def classify_pavlov(data):
 
 def main():
 
-	
+	filename = 'sub-042_eeg_sub-042_task-rest_eeg.set'
+	directory = 'assets/Pavlov/'
+
+	rest_Fz = pavlov_dl.get_channel_data(42, 'Fz', 'rest')
+	mem_Fz = pavlov_dl.get_channel_data(42, 'Fz', 'memory')
+
+	filt_rest = bp.bandpass_filter(rest_Fz, 4.5, 50, 1000)
+	filt_mem = bp.bandpass_filter(mem_Fz, 4.5, 50, 1000)
+
+	sp.plot_spectral_power(filt_rest, 'img', 1000, label = 'Fz, Rest', show_theta=True, new_fig=False, max_freq=20)
+	sp.plot_spectral_power(filt_mem, 'img2', 1000, label = 'Fz, Memory', show_theta=True, new_fig=False, max_freq=20)
+	#plt.savefig
+
 	'''
 	tasks = np.array(['eyesopen', 'eyesclosed', 'memory', 'mathematic', 'music'])
 
@@ -122,8 +134,8 @@ def main():
 	'''
 	
 	
-	raw1 = stream.get_muse_stream_data(2)
-	raw2 = stream.get_muse_stream_data(2)
+	#raw1 = stream.get_muse_stream_data(2)
+	#raw2 = stream.get_muse_stream_data(2)
 
 	
 
