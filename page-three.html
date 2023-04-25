@@ -8,14 +8,28 @@
   <title>Link CSS to HTML</title>
 </head>
 <body>   
-  <div class="cart">
-    <p><strong>Cart</strong></p>
-  </div>
+  <ul id='Cart'></ul>
   <button type="button" class="first">Yes</button>
   <button type="button" class="second">No</button>
   <a href = "page-two.html"><button type="button" class="back3">Back</button></a>
   <a href = "page-four.html"><button type="button" class="next3">Next</button> </a>
   
+
+  <script>
+    
+    var cartList = document.getElementById('Cart');
+
+
+    cartCount = localStorage.getItem('cartCount');
+
+    console.log(cartCount);
+
+    for (i = 0; i < cartCount; i++) {
+      var item_str = localStorage.getItem(i);
+      var item_idx = item_str.slice(2, 3);
+      cartList.appendChild(document.createTextNode('Item ' + item_idx + '\n'))
+    }
+  </script>
 
 </body>
 </html>

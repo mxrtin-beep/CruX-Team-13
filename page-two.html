@@ -19,6 +19,8 @@
   <ul id='Selected'></ul>
   <script>
 
+    var cartCount = 0;
+
     b1 = document.getElementById('1');
     b1.style.color = 'black';
 
@@ -65,13 +67,29 @@
       var selectedList = document.getElementById('Selected');
       var cartList = document.getElementById('Cart');
 
-      cartList = selectedList.cloneNode(true);
-
+      //cartList = selectedList.cloneNode(true);      
       while (selectedList.firstChild) {
-        selectedList.removeChild(selectedList.firstChild);
+
+        if (cartList.contains(selectedList.firstChild)) {
+          //console.log('already in');
+        }
+        else {
+         
+          cartList.appendChild(selectedList.firstChild.cloneNode());
+          localStorage.setItem(cartCount, selectedList.firstChild.id);
+          cartCount = cartCount + 1;
+        }
+
+        // Basically clicks all the selected buttons once again so they remove their item from selected.
+        var child_id = selectedList.firstChild.id;
+        var button_id = child_id.slice(2, 3);
+        console.log(button_id);
+        var button = document.getElementById(button_id);
+        select(button);
+        //selectedList.removeChild(selectedList.firstChild);
       }
-      console.log(selectedList.firstChild);
-      console.log(cartList.firstChild);
+      console.log(cartList);
+      localStorage.setItem('cartCount', cartCount)
     }
   </script>
 
