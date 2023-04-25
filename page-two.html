@@ -15,10 +15,20 @@
   <button onclick="select(this)" class="item-4" id='4'>Item 4</button>
   <button onclick="select(this)" class="item-5" id='5'>Item 5</button>
   <button type="button" class="add-to-cart" onclick='addToCart()'>Add to Cart</button>
+  <p class='number'>100</p>
+  <button type="button" class='add-to-cart' onclick='clearCart()'>Clear Cart</button>
 
+  <p>Selected:</p>
   <ul id='Selected'></ul>
   <script>
+    var cartNumber = 0
+    var display = document.querySelector('.number');
+    display.textContent = cartNumber;
 
+    function changeCount(number) {
+      var display = document.querySelector('.number');
+      display.textContent = number;
+    }
     var cartCount = 0;
 
     b1 = document.getElementById('1');
@@ -90,6 +100,26 @@
       }
       console.log(cartList);
       localStorage.setItem('cartCount', cartCount)
+
+      changeCount(cartCount);
+    }
+
+    function clearCart(){
+
+      var cartList = document.getElementById('Cart');
+
+      for (i = 0; i < cartCount; i++) {
+        localStorage.removeItem(i);
+      }
+
+      while (cartList.firstChild) {
+        cartList.removeChild(cartList.firstChild);
+      }
+
+      cartCount = 0;
+      localStorage.setItem('cartCount', cartCount);
+
+      changeCount(cartCount);
     }
   </script>
 
