@@ -1,0 +1,25 @@
+.confirmation {  
+    margin-top: 50px;
+    margin-left: 600px;
+    font-size: 35px;
+  } 
+
+.thank-you{  
+    margin-top: 250px;
+    margin-left: 450px;
+    font-size: 40px;
+  } 
+
+.back4 {
+    display: block;
+    width: 200px;
+    background-color: #ffffff;
+    padding: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: 230px;
+    margin-left: 50px;
+ 
+ }
