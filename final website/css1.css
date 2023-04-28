@@ -1,0 +1,18 @@
+.block {
+    display: block;
+    width: 20%;
+    background-color: #ffffff;
+    padding: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    border: 2px solid rgb(0, 0, 0); 
+    margin-top: 250px;
+    
+  }
+
+.title {
+  margin-top: 100px;
+  text-align: center;
+}
