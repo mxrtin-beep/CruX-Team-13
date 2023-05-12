@@ -1,10 +1,15 @@
+.items {
+   font-size: 30px;
+   text-align: center;
+}
+
 .cart {  
     margin-top: 50px;
-    margin-left: 700px;
     font-size: 35px;
+    text-align: center;
   } 
 
-  .first {
+.first {
     display: block;
     width: 20%;
     background-color: #ffffff;
@@ -41,7 +46,7 @@
     cursor: pointer;
     text-align: center;
     border: 2px solid rgb(0, 0, 0); 
-    margin-top: 200px;
+    margin-top: 450px;
     margin-left: 50px;
  
  }
@@ -60,4 +65,3 @@
     margin-top: -82px;
     margin-left: 1200px; 
  }
-
