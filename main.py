@@ -15,6 +15,7 @@ import numpy as np
 #import muselsl
 import os
 from time import time, strftime, gmtime
+import pandas as pd
 
 
 import data_loader_pavlov as pavlov_dl
@@ -28,6 +29,7 @@ import classify
 import mne_processing as mnep
 import stream
 
+fs = 250
 
 # ----------------------------------------- PLOTTING ----------------------------------------------
 
@@ -73,76 +75,49 @@ def classify_pavlov(data):
 	return classify.general_classify(data, const.PAVLOV_SAMPLING_RATE, cutoff=(const.CUTOFF*base), n_seconds=const.PAVLOV_SECONDS)
 
 
+def pipeline(text, filename):
+	pz = text[' EXG Channel 1'][fs*2:]
+	cz = text[' EXG Channel 4'][fs*2:]
+	fz = text[' EXG Channel 5'][fs*2:]	# Adelyne: 5; Amanda: 7
+	min_freq = 3
+	max_freq = 15
+	
+	#sp.plot_spectral_power(pz, 'pz'+filename, fs, label='pz', min_freq=min_freq, max_freq=max_freq, new_fig=True, show_theta=True, show_alpha=True)
+	#sp.plot_spectral_power(cz, 'cz'+filename, fs, label='cz', min_freq=min_freq, max_freq=max_freq, new_fig=False, show_theta=True, show_alpha=True)
+	#sp.plot_spectral_power(fz, 'fz'+filename, fs, label='fz', min_freq=min_freq, max_freq=max_freq, new_fig=False, show_theta=True, show_alpha=True)
+
+	pz_power = sp.relative_band_power(pz, fs, 'theta')
+	cz_power = sp.relative_band_power(cz, fs, 'theta')
+	fz_power = sp.relative_band_power(fz, fs, 'theta')
+
+	print(f'Task: {filename}\t Fz Power: {round(fz_power*100, 2)}')
+
+	return fz_power*100
 
 def main():
 
-	filename = 'sub-042_eeg_sub-042_task-rest_eeg.set'
-	directory = 'assets/Pavlov/'
+	subject = 'adelyne'
+	amanda_tasks = {'eyesclosed':3, 'eyesopen':3, 'sequencememory':2, 'chimp':1, 'numbermemory':2, 'verbalmemory':3}
+	adelyne_tasks = {'eyesclosed':2, 'eyesopen':1,
+	'alphabetbackwards':1, 'alphabetskipone':1, 'capitals':1, 'chimp':1, 'mentalmath':3, 'numbermemory':2, 'verbalmemory':1}
 
-	rest_Fz = pavlov_dl.get_channel_data(42, 'Fz', 'rest')
-	mem_Fz = pavlov_dl.get_channel_data(42, 'Fz', 'memory')
+	directory = 'session1'
+	tasks = adelyne_tasks
 
-	filt_rest = bp.bandpass_filter(rest_Fz, 4.5, 50, 1000)
-	filt_mem = bp.bandpass_filter(mem_Fz, 4.5, 50, 1000)
+	for task in tasks.keys():
+		for i in range(1, tasks[task] + 1):
+			filename = directory + '/' + subject + '/' + subject + '_' + task + '_' + str(i) + '.txt'
+			text = pd.read_csv(filename, skiprows=4)
+			power = pipeline(text, subject + '_' + task + '_' + str(i))
+			plt.bar(task + '_' + str(i), round(power, 3), color='green')
 
-	sp.plot_spectral_power(filt_rest, 'img', 1000, label = 'Fz, Rest', show_theta=True, new_fig=False, max_freq=20)
-	sp.plot_spectral_power(filt_mem, 'img2', 1000, label = 'Fz, Memory', show_theta=True, new_fig=False, max_freq=20)
-	#plt.savefig
+	#fig, ax = plt.subplots()
+	#plt.xticks(rotation=30)
+	plt.xticks(rotation=30, ha='right')
+	plt.title(subject + ' Relative Theta Power Times 100, Fz Electrode')
+	plt.subplots_adjust(bottom=0.25)
+	plt.savefig('charts/bar1.png')
 
-	'''
-	tasks = np.array(['eyesopen', 'eyesclosed', 'memory', 'mathematic', 'music'])
-
-	for i in range(len(tasks)):
-		task = tasks[i]
-
-		times, data = wang_dl.get_channel_data(1, 'AF7', task, 1)
-		if i == 0:
-			sp.plot_spectral_power(data, 'Wang Paper Results', const.WANG_SAMPLING_RATE, 2, 20, label=task, new_fig=True, show_theta=True, show_alpha=True)
-		else:
-			sp.plot_spectral_power(data, 'Wang Paper Results', const.WANG_SAMPLING_RATE, 2, 20, label=task, new_fig=False, show_theta=False, show_alpha=False)
-
-		classify_wang(data)
-
-
-	tasks = np.array(['rest', 'memory'])
-
-	for i in range(len(tasks)):
-		task = tasks[i]
-
-		data = pavlov_dl.get_channel_data(43, 'AF7', task)
-		if i == 0:
-			sp.plot_spectral_power(data, 'Pavlov Paper Results', const.PAVLOV_SAMPLING_RATE, 2, 20, label=task, new_fig=True, show_theta=True, show_alpha=True)
-		else:
-			sp.plot_spectral_power(data, 'Pavlov Paper Results', const.PAVLOV_SAMPLING_RATE, 2, 20, label=task, new_fig=False, show_theta=False, show_alpha=False)
-
-		classify_pavlov(data)
-	'''
-	
-	'''
-	filename = 'sub-01_ses-session1_eeg_sub-01_ses-session1_task-eyesclosed_eeg.vhdr'
-	directory = 'assets/Wang/'
-
-	raw = mnep.load_raw_data(filename, directory)
-	clean = mnep.get_clean_data(raw, 1.0, 30.0, 0)
-	print(clean)
-	print(clean.ch_names)
-	print(clean.info)
-	print(clean.times)
-
-	# numpy array of shape (n_epochs, n_channels, n_times)
-	print(clean.get_data(picks=['AF7']))
-	'''
-	
-	
-	#raw1 = stream.get_muse_stream_data(2)
-	#raw2 = stream.get_muse_stream_data(2)
-
-	
-
-	#filename = 'example_data.csv'
-	#directory = 'assets/'
-
-	#print(mnep.load_csv_data(filename, directory))
 
 if __name__ == "__main__":
     main()
