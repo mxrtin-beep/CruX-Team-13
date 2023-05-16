@@ -54,7 +54,7 @@ def plot_spectral_power(data, filename, sampling_rate, min_freq = 0, max_freq = 
 
 	name = const.CHART_DIRECTORY + filename + '.png'
 	plt.legend()
-	plt.savefig(name)
+	#plt.savefig(name)
 
 	
 
