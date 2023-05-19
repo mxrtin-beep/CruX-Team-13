@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="0SECcss2.css" /> 
+  <title>Shopping</title>
+</head>
+<body>
+  <app-root></app-root>
+  <button onclick="select(this)" class="item-1" id='1'>Item 1</button>
+  <button onclick="select(this)" class="item-2" id='2'>Item 2</button>
+  <button onclick="select(this)" class="item-3" id='3'>Item 3</button>
+  <button onclick="select(this)" class="item-4" id='4'>Item 4</button>
+  <button onclick="select(this)" class="item-5" id='5'>Item 5</button>
+  <button type="button" class="add-to-cart" onclick='addToCart()'>Add to Cart</button>
+  <p class='number'>100</p>
+  <button type="button" class='add-to-cart' onclick='clearCart()'>Clear Cart</button>
+
+  <p>Selected:</p>
+  <ul id='Selected'></ul>
+  <script>
+    var cartNumber = 0
+    var display = document.querySelector('.number');
+    display.textContent = cartNumber;
+
+    function changeCount(number) {
+      var display = document.querySelector('.number');
+      display.textContent = number;
+    }
+    var cartCount = 0;
+
+    b1 = document.getElementById('1');
+    b1.style.color = 'black';
+
+    b2 = document.getElementById('2');
+    b2.style.color = 'black';
+
+    b3 = document.getElementById('3');
+    b3.style.color = 'black';
+
+    b4 = document.getElementById('4');
+    b4.style.color = 'black';
+
+    b5 = document.getElementById('5');
+    b5.style.color = 'black';
+
+    function select(button){
+      
+      if(button.style.color == 'black') 
+      {
+        button.style.color = 'blue';
+        var selectedList = document.getElementById('Selected');
+        var item = document.createElement('item')
+        item.setAttribute('id', 'li'+button.id)
+        item.appendChild(document.createTextNode('Item ' + button.id + '\n'))
+        selectedList.appendChild(item)
+        //cartList.innerHTML += '<li>Item ' + button.id + '</li>';
+      } 
+      else {
+        
+        //document.write('hi');
+        var selectedList = document.getElementById('Selected');
+        var item = document.getElementById('li'+button.id);
+        selectedList.removeChild(item);
+        button.style.color = 'black';
+        return;
+      }
+      //console.log(getComputedStyle(button).color);
+    }
+
+
+
+    function addToCart(){
+
+      var selectedList = document.getElementById('Selected');
+      var cartList = document.getElementById('Cart');
+
+      //cartList = selectedList.cloneNode(true);      
+      while (selectedList.firstChild) {
+
+        if (cartList.contains(selectedList.firstChild)) {
+          //console.log('already in');
+        }
+        else {
+         
+          cartList.appendChild(selectedList.firstChild.cloneNode());
+          localStorage.setItem(cartCount, selectedList.firstChild.id);
+          cartCount = cartCount + 1;
+        }
+
+        // Basically clicks all the selected buttons once again so they remove their item from selected.
+        var child_id = selectedList.firstChild.id;
+        var button_id = child_id.slice(2, 3);
+        console.log(button_id);
+        var button = document.getElementById(button_id);
+        select(button);
+        //selectedList.removeChild(selectedList.firstChild);
+      }
+      console.log(cartList);
+      localStorage.setItem('cartCount', cartCount)
+
+      changeCount(cartCount);
+    }
+
+    function clearCart(){
+
+      var cartList = document.getElementById('Cart');
+
+      for (i = 0; i < cartCount; i++) {
+        localStorage.removeItem(i);
+      }
+
+      while (cartList.firstChild) {
+        cartList.removeChild(cartList.firstChild);
+      }
+
+      cartCount = 0;
+      localStorage.setItem('cartCount', cartCount);
+
+      changeCount(cartCount);
+    }
+  </script>
+
+  
+  
+  <a href = "0SECindex.html"><button type="button" class="back2">Back</button></a>
+  <a href = "0SECloading-two.html"><button type="button" class="next2">Next</button> </a>
+  <ul id='Cart'></ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="CLUTTERcss3.css" /> 
+  <title>Cart</title>
+</head>
+<body>
+  <div class="cart">
+    <p><strong>Cart</strong></p>
+  </div>
+  
+  <div class="items">
+    <ul id='Cart'></ul>
+  </div>
+  <a href = "CLUTTERpage-two.html"><button type="button" class="back3">Back</button></a>
+  <a href = "CLUTTERloading-three.html"><button type="button" class="next3" onclick="myFunction()">Confirm</button> </a>
+
+  <script>
+    function myFunction(){
+      var a = confirm("Are you sure you want to buy these items?");
+      alert(a);
+    }
+  
+    
+    var cartList = document.getElementById('Cart');
+
+
+    cartCount = localStorage.getItem('cartCount');
+
+    console.log(cartCount);
+
+    for (i = 0; i < cartCount; i++) {
+      var item_str = localStorage.getItem(i);
+      var item_idx = item_str.slice(2, 3);
+      cartList.appendChild(document.createTextNode('Item ' + item_idx + '\n'))
+    }
+  </script>
+
+</body>
+</html>
