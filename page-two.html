@@ -126,7 +126,14 @@
   
   
   <a href = "index.html"><button type="button" class="back2">Back</button></a>
-  <a href = "loading-two.html"><button type="button" class="next2">Next</button> </a>
+  <a href = "loading-two.html"><button type="button" class="next2" onclick = "myFunction()">Next</button> </a>
   <ul id='Cart'></ul>
+
+  <script>
+    function myFunction(){
+      var a = confirm("There is a 2-for-1 sale on Item 3, take a look!");
+      alert(a);
+    }
+  </script>
 </body>
 </html>

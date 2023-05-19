@@ -16,10 +16,14 @@
     <ul id='Cart'></ul>
   </div>
   <a href = "page-two.html"><button type="button" class="back3">Back</button></a>
-  <a href = "loading-three.html"><button type="button" class="next3">Confirm</button> </a>
-  
+  <a href = "loading-three.html"><button type="button" class="next3" onclick="myFunction()">Confirm</button> </a>
 
   <script>
+    function myFunction(){
+      var a = confirm("Are you sure you want to buy these items?");
+      alert(a);
+    }
+  
     
     var cartList = document.getElementById('Cart');
 
